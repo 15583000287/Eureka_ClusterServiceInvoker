@@ -12,3 +12,15 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/
+
+
+# 使用配置文件设置Ribbon
+# Eureka服务器实例名,即应用名
+service-provider:
+  ribbon:
+#    指定自定义负载规则类
+    NFLoadBalancerRuleClassName: com.example.eurekaserviceinvoke.config.MyRule
+#    指定自定义Ping类(单独使用Ribbon不会触发Ping机制，IPing接口默认实现类DummyPing直接返回true)
+    NFLoadBalancerPingClassName: com.example.eurekaserviceinvoke.config.MyPing
+#    指定服务器列表
+    listOfServers: http://localhost:8080/,http://localhost:8081/
